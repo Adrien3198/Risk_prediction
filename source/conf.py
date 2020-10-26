@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 import sys
 import os
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../src'))
 project = 'Risk prediction'
 copyright = '2020, Adrien MICHEL'
 author = 'Adrien MICHEL'
