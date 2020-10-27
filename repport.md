@@ -45,8 +45,19 @@ Our problem being a classifying problem, we chose 4 metrics to evaluate our mode
 * f1 score
 
 ##### &nbsp;&nbsp;*Random forest classifier*
+We chose only two parameters :
+* max_depth
+* min_samples_split
 ##### &nbsp;&nbsp;*Gradient boosting classifier*
+We chose only three parameters : 
+* learning_rate"
+* max_depth
+* min_samples_split.
 ##### &nbsp;&nbsp;*XGBoost classifier*
+We chose only three parameters : 
+* learning_rate"
+* max_depth
+* min_child_weigth
 
 ### Part 2 (Using MLFLow)
 
@@ -68,3 +79,20 @@ After running multiple models with different parameters, we have obtained this t
 
 ![mlflow](plots/mlflow.png)
 
+To choose the best model, we filter in MLflow the models which obtained the best scores for accuracy and precision with this following command :\
+ ```
+ metrics.precision_1 > 0.7 and metrics.precision_0 > 0.9 and metrics.accuracy > 0.9
+ ```
+![screen2](plots/screenshot2.png)
+
+The best model is the random forest classifier with *max_depth=10* and *min_samples_split=10* 
+
+### Part 3 (XAI with SHAP Method)
+
+
+##### *Explanations for a specific point of data set*
+![sumplot](plots/forceplot.png)
+##### *explanations for all points of data set at once*
+![sumplot](plots/forceplot2.png)
+##### *Summary plot*
+![sumplot](plots/summaryplot.png)
