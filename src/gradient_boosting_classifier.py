@@ -29,10 +29,12 @@ def train():
     with mlflow.start_run():
 
         alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.1
-        n_estimators = int(sys.argv[2]) if len(sys.argv) > 2 else 100
+        max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 3
+        min_samples_split = int(sys.argv[3]) if len(sys.argv) > 3 else 2
 
-        model = GradientBoostingClassifier(learning_rate=alpha)
-        print("Model training ...")
+
+        model = GradientBoostingClassifier(learning_rate=alpha, max_depth=max_depth)
+        print("Model training (alpha = %f, max_depth = %d, min_samples_split= %d)..." % (alpha, max_depth, min_samples_split))
         model.fit(X=X_train, y=y_train)
         y_pred_rfc = model.predict(X_test)
         accuracy, precision, recall, f1, support = get_metrics(
@@ -41,7 +43,8 @@ def train():
 
         mlflow.log_params({
             "learning_rate": alpha,
-            "n_estimators": n_estimators
+            "max_depth": max_depth,
+            "min_samples_split": min_samples_split
         })
 
         mlflow.log_metrics({

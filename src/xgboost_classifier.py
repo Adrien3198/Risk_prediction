@@ -27,18 +27,20 @@ def train():
 
     with mlflow.start_run():
 
-        alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.1
-        n_estimators = int(sys.argv[2]) if len(sys.argv) > 2 else 100
+        alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.3
+        max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 6
+        min_child_weigth = int(sys.argv[3]) if len(sys.argv) > 3 else 1
 
-        model = XGBClassifier(learning_rate=alpha, n_estimators=n_estimators)
-        print("Model training...")
+        model = XGBClassifier(learning_rate=alpha, max_depth=max_depth, min_child_weigth=min_child_weigth)
+        print("Model training (alpha = %f, max_depth = %d, min_child_weight = %d) ..." % (alpha, max_depth, min_child_weigth))
         model.fit(X=X_train, y=y_train)
         y_pred_rfc = model.predict(X_test)
         accuracy, precision, recall, f1, support = get_metrics(y_test, y_pred_rfc)
 
         mlflow.log_params({
             "learning_rate": alpha,
-            "n_estimators": n_estimators
+            "max_depth": max_depth,
+            "min_child_weigth": min_child_weigth
         })
 
         mlflow.log_metrics({

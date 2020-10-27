@@ -30,7 +30,7 @@ def train():
         min_samples_split = int(sys.argv[2]) if len(sys.argv) > 2 else 2
 
         model = RandomForestClassifier(n_jobs=-1)
-        print("Model training ...")
+        print("Model training (max_depth = %d, min_samples_split = %d) ..." % (max_depth, min_samples_split))
         model.fit(X=X_train, y=y_train)
         y_pred_rfc = model.predict(X_test)
 
