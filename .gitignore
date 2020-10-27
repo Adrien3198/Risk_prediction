@@ -1,2 +1,4 @@
 datasets
 mlruns
+.vscode
+.ipynb_checkpoints

@@ -21,5 +21,6 @@ def get_metrics(y, y_pred):
       accuracy = accuracy_score(y, y_pred)
       precision, recall, fscore, support = precision_recall_fscore_support(
             y, y_pred)
+      print("Evaluation :")
       print(classification_report(y, y_pred))
       return accuracy, precision, recall, fscore, support

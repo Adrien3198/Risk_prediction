@@ -24,14 +24,15 @@ def train():
     X = df.drop(columns="TARGET")
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.33, random_state=42)
+        X, y, test_size=0.33, random_state=42, stratify=y)
 
     with mlflow.start_run():
 
-        alpha = int(sys.argv[1]) if len(sys.argv) > 1 else 0.1
+        alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.1
         n_estimators = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 
         model = GradientBoostingClassifier(learning_rate=alpha)
+        print("Model training ...")
         model.fit(X=X_train, y=y_train)
         y_pred_rfc = model.predict(X_test)
         accuracy, precision, recall, f1, support = get_metrics(
@@ -69,4 +70,5 @@ def train():
 
 
 if __name__ == "__main__":
+    print("Gradient boosting Classifier model")
     train()

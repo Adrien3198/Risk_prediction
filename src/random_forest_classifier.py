@@ -1,3 +1,4 @@
+from itertools import starmap
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from evaluation import get_metrics
@@ -21,7 +22,7 @@ def train():
     y = df["TARGET"]
     X = df.drop(columns="TARGET")
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42, stratify=y)
 
     with mlflow.start_run():
         
@@ -29,6 +30,7 @@ def train():
         min_samples_split = int(sys.argv[2]) if len(sys.argv) > 2 else 2
 
         model = RandomForestClassifier(n_jobs=-1)
+        print("Model training ...")
         model.fit(X=X_train, y=y_train)
         y_pred_rfc = model.predict(X_test)
 
@@ -65,4 +67,5 @@ def train():
 
 
 if __name__ == "__main__":
+    print("Random Forest Classifier model")
     train()
