@@ -39,7 +39,7 @@ random_forest_classifier.py
 
 A python script to build a random forest classifier model
 ::
-   $ python random_forest_classifier.py <max_depth> <min_sample_split>
+ $ python random_forest_classifier.py <max_depth> <min_sample_split>
 
 .. automodule:: random_forest_classifier
    :members:
@@ -49,7 +49,7 @@ gradient_boosting_classifier.py
 ===============================
 A python script to build a random forest classifier model
 ::
-   $ python gradient_boosting_classifier.py <alpha> <n_estimators>
+ $ python gradient_boosting_classifier.py <alpha> <max_depth> <min_samples_split>
 
 .. automodule:: gradient_boosting_classifier
    :members:
@@ -59,7 +59,7 @@ xgboost_classifier.py
 =====================
 A python script to build a xgboost classifier model
 :: 
-   $ python xgboost_classifier.py <alpha> <n_estimators>
+ $ python xgboost_classifier.py <alpha> <max_depth> <min_child_weigth>
 
 .. automodule:: xgboost_classifier
    :members:

@@ -87,12 +87,15 @@ To choose the best model, we filter in MLflow the models which obtained the best
 
 The best model is the random forest classifier with *max_depth=10* and *min_samples_split=10* 
 
+
+<br>
+
 ### Part 3 (XAI with SHAP Method)
 
 
 ##### *Explanations for a specific point of data set*
 ![sumplot](plots/forceplot.png)
-##### *explanations for all points of data set at once*
+##### *Explanations for all points of data set at once*
 ![sumplot](plots/forceplot2.png)
 ##### *Summary plot*
 ![sumplot](plots/summaryplot.png)
